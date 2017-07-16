@@ -1,0 +1,6 @@
+---
+final_name: mongodb
+blobstore:
+  provider: local
+  options:
+    blobstore_path: ./releases/mongodb

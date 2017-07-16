@@ -1,0 +1,47 @@
+---
+name: mongodb
+releases:
+- {name: mongodb, version: latest}
+stemcells:
+- alias: default
+  os: ubuntu-trusty
+  version: '3421.11'
+update:
+  canaries: 1
+  canary_watch_time: 15000-30000
+  update_watch_time: 15000-30000
+  max_in_flight: 1
+instance_groups:
+- name: mongodb
+  azs:
+  - z1
+  instances: 1
+  jobs:
+  - name: mongodb
+    properties: {}
+    release: mongodb
+  networks:
+  - name: default
+  stemcell: default
+  update:
+    max_in_flight: 1
+    serial: true
+  vm_type: m3.medium
+  persistent_disk_type: 10GB
+- name: create-admin-user
+  azs:
+  - z1
+  instances: 1
+  jobs:
+  - name: create-admin-user
+    properties: {}
+    release: mongodb
+  lifecycle: errand
+  networks:
+  - name: default
+  stemcell: default
+  update:
+    max_in_flight: 1
+    serial: true
+  vm_type: m3.medium
+  persistent_disk_type: 10GB

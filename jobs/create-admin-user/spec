@@ -1,0 +1,26 @@
+---
+name: create-admin-user
+
+packages:
+- simple_server
+
+templates:
+  errand.sh.erb: bin/run
+consumes:
+- name: mongodb-server
+  type: conn
+
+properties:
+  mongodb.auth.user:
+    description: "User name of user to create"
+    default: admin
+  mongodb.auth.password:
+    description: "Password of user to create"
+    default: admin
+#  mongodb.auth.additional_roles:
+#    description: "Additonal roles for mongodb.auth.user (gets userAdminAnyDatabase and readWriteAdminAnyDatabase additionally)"
+  mongodb.ip:
+    description: "IP of Mongodb"
+  mongodb.port:
+    description: "Port of Mongodb"
+    default: 27017
